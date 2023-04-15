@@ -102,3 +102,18 @@ exports.partialUpdateTour = async (req,res) => {
     }
 }
 
+exports.deleteTour = async (req,res) => {
+    try {
+        await Tour.findByIdAndDelete(req.params.id);
+        res.status(204).json({
+            status: 'Success',
+            data: null,
+        });
+    }
+    catch (err) {
+        res.status(404).json({
+            status: 'Fail',
+            message: err
+        });
+    }
+}
