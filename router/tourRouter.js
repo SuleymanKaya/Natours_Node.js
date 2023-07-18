@@ -1,5 +1,6 @@
 const express = require('express');
 const tourController = require('../controllers/tourController');
+const catchAsync = require("../utils/catchAsync");
 
 const tourRouter = express.Router();
 
@@ -19,7 +20,7 @@ tourRouter
     .get(tourController.getTour)
     .put(tourController.updateTour)
     .patch(tourController.partialUpdateTour)
-    .delete(tourController.deleteTour);
+    .delete(catchAsync(tourController.deleteTour));
 
 
 module.exports = tourRouter;
